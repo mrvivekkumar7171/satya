@@ -1,0 +1,186 @@
+name: Satya CICD Pipeline
+
+on: push
+
+jobs:
+  model-deployment:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code and load data from MLFLOW
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.11.13'
+
+
+
+      # # running DVC pipeline
+      # - name: Cache pip dependencies to make the installation faster
+      #   uses: actions/cache@v3
+      #   with:
+      #     path: ~/.cache/pip
+      #     key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-pip-
+
+      # - name: Install dependencies from requirements.txt
+      #   run: |
+      #     pip install -r requirements.txt
+
+      # - name: Run dvc pipeline on GitHub Actions pipeline
+      #   env: # to enable AWS S3 access for DVC on GitHub Actions
+      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION_NAME }}
+      #   run: |
+      #     dvc repro
+
+      # - name: Push DVC-tracked data to remote server S3 bucket on GitHub Actions
+      #   env:
+      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION_NAME }}
+      #   run: |
+      #     dvc push
+
+      # - name: Configure Git Bot User to Commit and Push changes made by dvc repro to GitHub
+      #   run: |
+      #     git config --global user.name "github-actions[bot]"
+      #     git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      # - name: Add changes made by dvc to Git
+      #   run: |
+      #     git add .
+
+      # - name: Commit changes made by dvc to Git
+      #   if: ${{ github.actor != 'github-actions[bot]' }}
+      #   run: |
+      #     git commit -m "github-actions[bot] : Automated commit of DVC outputs and updated code" || echo "No changes to commit"
+
+      # # To prevent from infinite github push loop, we need to check if the actor is not the bot itself.
+      # - name: Push changes
+      #   if: ${{ github.actor != 'github-actions[bot]' }}
+      #   env:
+      #     GIT_HUB_TOKEN: ${{ secrets.GIT_HUB_TOKEN }}
+      #   run: |
+      #     git push origin ${{ github.ref_name }}
+
+
+
+
+      # # Testing the model before deploying to production
+      # - name: Installing additional testing dependencies (not needed for deployment) 
+      #   run: |
+      #     pip install pytest
+
+      # - name: Run model loading test
+      #   env:
+      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION_NAME }}
+      #   run: |
+      #     pytest src/test/test_load_model.py
+
+      # - name: Run model signature test
+      #   env:
+      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION_NAME }}
+      #   run: |
+      #     pytest src/test/test_model_signature.py
+
+      # - name: Run model performance test if pass then only deploy the model
+      #   env:
+      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION_NAME }}
+      #   run: |
+      #     pytest src/test/test_model_performance.py
+
+      # - name: Promote model to production if previous tests are successful
+      #   if: success()
+      #   env:
+      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION_NAME }}
+      #   run: python src/test/promote_model.py
+
+      # # nohup to run the flask app in the background and & to prevent the process from being killed when the step ends and run next command
+      # # > flask.log 2>&1 to log the output and errors to flask.log file 
+      # - name: Start Flask API App in the background for endpoint testing
+      #   env:
+      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION_NAME }}
+      #   run: |
+      #     python backend/app.py > flask.log 2>&1 &
+
+      # # here, http://127.0.0.1:5000/ is of GitHub Action local endpoint so don't replace it
+      # - name: Wait for Flask API to be ready before running endpoint testing
+      #   run: |
+      #     for i in {1..20}; do
+      #       if curl -s http://127.0.0.1:5000/ > /dev/null; then
+      #         echo "Flask API is ready!"
+      #         break
+      #       fi
+      #       echo "Waiting for Flask API..."
+      #       sleep 20
+      #     done
+
+      # - name: Run Flask API endpoints testing individually
+      #   run: |
+      #     pytest src/test/test_flask_api.py
+
+
+
+      # # The four steps to login, build, tag and push docker image to the AWS ECR
+      # - name: Login to AWS ECR
+      #   if: success()
+      #   run: |
+      #     aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 794431322868.dkr.ecr.ap-south-1.amazonaws.com
+
+      # - name: Build Docker image on GitHub Actions
+      #   if: success()
+      #   run: |
+      #     docker build -t satya-docker-image .
+
+      # - name: Tag the Docker image
+      #   if: success()
+      #   run: |
+      #     docker tag satya-docker-image:latest 794431322868.dkr.ecr.ap-south-1.amazonaws.com/satya-ecr:latest
+
+      # - name: Push Docker image to AWS ECR
+      #   if: success()
+      #   run: |
+      #     docker push 794431322868.dkr.ecr.ap-south-1.amazonaws.com/satya-ecr:latest
+
+
+
+      # # To deploy the docker image from ECR to EC2 instances using CodeDeploy, we need to create a ZIP file of appspec.yml and the scripts folder
+      # - name: Zip the required files for deployment
+      #   if: success()
+      #   run: |
+      #     zip -r deployment.zip appspec.yml deploy/scripts/install_dependencies.sh deploy/scripts/start_docker.sh
+
+      # - name: Upload the ZIP file to S3
+      #   if: success()
+      #   run: |
+      #     aws s3 cp deployment.zip s3://satya-codedeploy-bucket/deployment.zip
+
+      # - name: Deploy to AWS CodeDeploy using the uploaded ZIP file
+      #   if: success()
+      #   run: |
+      #     aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     aws deploy create-deployment \
+      #       --application-name Satya_Application \
+      #       --deployment-config-name CodeDeployDefault.OneAtATime \
+      #       --deployment-group-name Satya_Deployment_Group \
+      #       --s3-location bucket=satya-codedeploy-bucket,key=deployment.zip,bundleType=zip \
+      #       --file-exists-behavior OVERWRITE \
+      #       --region ${{ secrets.AWS_REGION_NAME }}
