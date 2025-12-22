@@ -536,6 +536,38 @@ Create `appspec.yml`, `deploy/scripts/install_dependencies.sh` and `start_docker
 
 NOTE: if the deployment fails at AllowTraffic means security group in Load Balances is not allowed for 80 TCP http 0.0.0.0/0 thus add in inbound.
 
+# Further Improvements :
+
+- Data noise, variability, class imbalance
+- reduce the size of docker image from 500 MB to 50-100MB
+- add monitoring of flask app or model
+- move model of ML to model registory instead of folder.
+- retraing if the model performance degraded in future.
+- use FastAPI for ML endpoint instead of loading model to the this server (flask based to render html pages with jinger templates.) because Auto-generated OpenAPI docs (Swagger & ReDoc) and very fast.
+- Normal English:                               You are Tony Stark of Data Science.
+- Other Languages:                              तुम डेटा साइंस की दुनिया के टोनी स्टार्क हो।
+- Code-Switching (Mix of Languages) Hinglish:   Tum Data Science ki duniya ke Tony Stark ho.
+- Spelling Mistakes & Slang (Informal Text):    Thiss movieee was lit af!!”
+                                                i dnt like dis prdct.
+- Hashtags and Mentions:                        #NotImpressed @brand
+                                                Thank you sooo much!
+- Emojis:                                       You are the Tony Stark 🦾 of Data Science 📊🧠😊.
+- Sarcasm and Irony and Humor:                  Oh great, another Monday.
+                                                I just love getting stuck in traffic for hours.
+                                                This movie is so good I fell asleep after 10 minutes.
+                                                Can’t wait to work overtime this weekend. #blessed 🙄.
+                                                Wow, that was so helpful. Really
+- Negation Handling:                            This is not what I expected. I don't hate it. I expected more from this. Not bad, but not great either.
+- Contextual Meaning (Handles polysemy):        I deposited money at the bank. The boat is near the river bank.
+- Entity Disambiguation:                        Apple released a new update. while, I had an apple for lunch.
+- Gender Relationships:                         vec("King") - vec("Man") + vec("Woman") ≈ vec("Queen")
+- City-Country Relationship:                    Paris is to France as Rome is to Italy.
+- Synonym & Antonym Awareness:                  "Good" ≈ "Nice", "Great" → all clustered together.
+                                                "Hot" vs "Cold" → placed in opposite directions in vector space.
+- Multi-sentence or Long-context Understanding: The phone looked great. But after two weeks, it stopped working.
+- Fix Word:                                     GreatWork. and Great Work.
+- Evolving language usage (e.g. sick) -> drift
+
 # Project Organization
 
     ├── .pytest_cache                                       <- Stores cache data from pytest test runs to speed up execution.
