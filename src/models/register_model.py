@@ -1,14 +1,26 @@
-# mlflow.register_model(runs:/<run_id>/<model_path>,...) : The 'experiment_info.json' contains the 'run_id' and 'model_path' to register the model. and Registration creates logged artifact a registered versioned model for model lifecycle management (versions, stages, transitions, deployment etc.) in Mlflow Model Registry under the name "satya" that points to the run artifact that was stored into the configured storage like s3 (it doesn’t copy another independent file by default — it references the artifact path). NOTE: experiment_info.json is required for code modularity.
+# mlflow.register_model(runs:/<run_id>/<model_path>,...) : The 'experiment_info.json' contains the 'run_id' and 'model_path' to register
+#  the model. and Registration creates logged artifact a registered versioned model for model lifecycle management (versions, stages,
+#  transitions, deployment etc.) in Mlflow Model Registry under the name "satya" that points to the run artifact that was stored into
+#  the configured storage like s3 (it doesn’t copy another independent file by default — it references the artifact path).
+# NOTE: experiment_info.json is required for code modularity.
 
-# client.set_registered_model_alias(...) : Aliases are mutable pointers — you can point the alias at a new version when you promote a new model. Use this when you want friendly names like "staging", "production", or "champion" to refer to specific versions. Aliases (mutable named pointers): an alias name (e.g., "staging", "production_model", "champion") is a pointer to a single model version at a time. When you call client.set_registered_model_alias(name, alias, version), you assign that alias to that version — that alias will point to that single version. Reassigning the alias to a different version will make it point to the new version instead. So you cannot have one alias name pointing to multiple versions simultaneously (an alias resolves to one version). staging as aliase means the model from artifact as official model in the MLFLOW Model Registory.
+# client.set_registered_model_alias(...) : Aliases are mutable pointers — you can point the alias at a new version when you promote a new
+#  model. Use this when you want friendly names like "staging", "production", or "champion" to refer to specific versions. Aliases 
+# (mutable named pointers): an alias name (e.g., "staging", "production_model", "champion") is a pointer to a single model version at a 
+# time. When you call client.set_registered_model_alias(name, alias, version), you assign that alias to that version — that alias will 
+# point to that single version. Reassigning the alias to a different version will make it point to the new version instead. So you cannot 
+# have one alias name pointing to multiple versions simultaneously (an alias resolves to one version). staging as aliase means the model 
+# from artifact as official model in the MLFLOW Model Registory.
 
-# Example: you take that cake in the fridge and put it into the bakery to display case (Model Registry) so people can request it by name/version/stage/alias.
+# Example: you take that cake in the fridge and put it into the bakery to display case (Model Registry) so people can request it by 
+# name/version/stage/alias.
 
 import json, mlflow, logging, os
-satya_mlflow_ec2_uri = 'http://65.2.37.109:5000/'
+from dotenv import load_dotenv
+load_dotenv()
 
 # Set up MLflow tracking URI
-mlflow.set_tracking_uri(satya_mlflow_ec2_uri)
+mlflow.set_tracking_uri(os.getenv("satya_mlflow_ec2_uri"))
 
 
 # logging configuration

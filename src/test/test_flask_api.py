@@ -1,8 +1,10 @@
 # testing API endpoints individually after deployment
 
 import pytest, requests, json, os
+from dotenv import load_dotenv
+load_dotenv()
 
-BASE_URL = 'http://127.0.0.1:5000/'
+BASE_URL = os.getenv("BASE_URL")
 
 def test_predict_endpoint():
     data = {

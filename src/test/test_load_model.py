@@ -2,12 +2,13 @@
 from mlflow.tracking import MlflowClient
 import mlflow.pyfunc
 import pytest, os
+from dotenv import load_dotenv
+load_dotenv()
 
-satya_mlflow_ec2_uri = 'http://65.2.37.109:5000/'
-FINAL_MODEL_NAME = 'satya'
+FINAL_MODEL_NAME = os.getenv("FINAL_MODEL_NAME")
 
 # Set your remote tracking URI
-mlflow.set_tracking_uri(satya_mlflow_ec2_uri)
+mlflow.set_tracking_uri(os.getenv("satya_mlflow_ec2_uri"))
 
 @pytest.mark.parametrize("model_name, alias", [
     (FINAL_MODEL_NAME, "staging"),])

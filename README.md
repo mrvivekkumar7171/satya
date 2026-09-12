@@ -2,173 +2,98 @@
 
 **Satya** is an end-to-end Machine Learning project designed to analyze sentiments. This repository focuses on the model development, API backend creation, and deployment pipelines using AWS and DevOps best practices.
 
-### **Technologies**:
-
-1. **Version Control and Collaboration**
-- **Git**:
-    - **Purpose**: Distributed version control system for tracking changes in source code.
-    - **Usage**: Manage codebase, track changes, and collaborate with team members.
-- **GitHub**:
-    - **Purpose**: Hosting service for Git repositories with collaboration features.
-    - **Usage**: Store repositories, manage issues, pull requests, and facilitate team collaboration.
-
-2. **Data Management and Versioning**
-- **DVC (Data Version Control)**
-    - **Purpose**: Version control system for tracking large datasets and machine learning models.
-    - **Usage**: Version datasets and machine learning pipelines, enabling reproducibility and collaboration.
-- **AWS S3 (Simple Storage Service)**
-    - **Purpose**: Scalable cloud storage service.
-    - **Usage**: Store datasets, pre-processed data, and model artifacts tracked by DVC.
-
-3. **Machine Learning and Experiment Tracking**
-- **Python**
-    - **Purpose**: Programming language for backend development and machine learning.
-    - **Usage**: Implement data processing scripts, machine learning models, and backend services.
-- **Machine Learning Libraries**:
-    - **scikit-learn**
-        - **Purpose**: Library for classical machine learning algorithms.
-        - **Usage**: Implement baseline models and preprocessing techniques.
-- **NLP Libraries**:
-    - **NLTK (Natural Language Toolkit)**
-        - **Purpose**: Platform for building Python programs to work with human language data.
-        - **Usage**: Tokenization, stemming, and other basic NLP tasks.
-    - **spaCy**
-        - **Purpose**: Industrial-strength NLP library.
-        - **Usage**: Advanced NLP tasks like named entity recognition, part-of-speech tagging.
-- **Mlflow**
-    - **Purpose**: Platform for managing the ML lifecycle, including experimentation, reproducibility, deployment, and a central model registry.
-    - **Usage**: Track experiments, log parameters, metrics, and artifacts; manage model versions.
-- **MLflow Model Registry**
-    - **Purpose**: Component of MLflow for managing the full lifecycle of ML models.
-    - **Usage**: Register models, manage model stages (e.g., staging, production), and collaborate on model development.
-- **Optuna**
-    - For Hyperparameter tuning
-
-4. **Continuous Integration/Continuous Deployment (CI/CD)**
-- **GitHub Actions**
-    - **Purpose**: Automation platform that enables CI/CD directly from GitHub repositories.
-    - **Usage**:
-        - Automate testing, building, and deployment pipelines.
-        - Trigger workflows on events like code commits or pull requests.
-
-5. **Cloud Services and Infrastructure**
-- **AWS (Amazon Web Services)**
-    - **AWS EC2 (Elastic Compute Cloud)**
-        - **Purpose**: Scalable virtual servers in the cloud.
-        - **Usage**: Host backend services, APIs, and model servers.
-    - **AWS Auto Scaling Groups**
-        - **Purpose**: Automatically adjust the number of EC2 instances to handle load changes.
-        - **Usage**:
-            - Ensure that the application scales out during demand spikes to maintain performance.
-            - Scale in during low demand periods to reduce costs.
-            - Maintain application availability by automatically adding or replacing instances as needed.
-    - **AWS CodeDeploy**
-        - **Purpose**: Deployment service that automates application deployments to various compute services like EC2, Lambda, and on-premises servers.
-        - **Usage**:
-            - Automate the deployment process of backend services and machine learning models to AWS EC2 instances or AWS Lambda.
-            - Integrate with GitHub Actions to create a seamless CI/CD pipeline that deploys code changes automatically upon successful testing.
-    - **AWS CloudWatch**
-        - **Purpose**: Monitoring and observability service.
-        - **Usage**: Monitor application logs, set up alerts, and track performance metrics.
-    - **AWS IAM (Identity and Access Management)**
-        - **Purpose**: Securely manage access to AWS services.
-        - **Usage**: Control access permissions for users and services.
-
-6. **Programming Languages and Libraries**
-- **Python**
-    - **Purpose**: Backend development, data processing, machine learning.
-    - **Usage**: Implement APIs, machine learning models, data pipelines.
-- **Data Processing Libraries**:
-    - **Pandas**
-        - **Purpose**: Data manipulation and analysis.
-        - **Usage**: Handle tabular data, preprocess datasets.
-    - **NumPy**
-        - **Purpose**: Fundamental package for scientific computing with Python.
-        - **Usage**: Perform numerical operations, handle arrays.
-
-7. **Development Tools**
-- **Code Editors and IDEs (Visual Studio Code)**:
-    - **Purpose**: Source code editor.
-    - **Usage**: Write and edit code for both frontend and backend development.
-
-8. **Testing and Quality Assurance Tools**
-- **Testing Frameworks**:
-    - **Pytest**
-        - **Purpose**: Testing framework for Python.
-        - **Usage**: Write and run unit tests for backend code and data processing scripts.
-    - **Unittest**
-        - **Purpose**: Built-in Python testing framework.
-        - **Usage**: Write unit tests for Python code.
-
-9. **Project Management and Communication**
-- **Project Management Tools**:
-    - **Jira**
-        - **Purpose**: Issue and project tracking software.
-        - **Usage**: Manage tasks, track progress, and coordinate team activities.
-- **Communication Tools**:
-    - **Slack**
-        - **Purpose**: Team communication platform.
-        - **Usage**: Facilitate real-time communication among team members.
-    - **Microsoft Teams**
-        - **Purpose**: Collaboration and communication platform.
-        - **Usage**: Chat, meet, call, and collaborate in one place.
-
-10. **DevOps and MLOps Tools**
-- **Docker**
-    - **Purpose**: Containerization platform.
-    - **Usage**: Package applications and dependencies into containers for consistent deployment.
-
-11. **Security and Compliance**
-- **SSL/TLS Certificates**
-    - **Purpose**: Secure communications over a computer network.
-    - **Usage**: Encrypt data between users and backend services.
-
-12. **Monitoring and Logging**
-- **Logging Tools**:
-    - **AWS CloudWatch Logs**
-        - **Purpose**: Monitor, store, and access log files.
-        - **Usage**: Collect and monitor logs from AWS resources.
-- **Monitoring Tools**:
-    - **Prometheus (Optional)**
-        - **Purpose**: Open-source monitoring system.
-        - **Usage**: Collect and store metrics, generate alerts.
-    - **Grafana**
-        - **Purpose**: Visualization and analytics software.
-        - **Usage**: Create dashboards to visualize metrics.
-
-13. **API Development and Testing**
-- **Frameworks**:
-    - **FastAPI**
-        - **Purpose**: Modern, fast web framework for building APIs with Python.
-        - **Usage**: Develop high-performance APIs efficiently.
-- **API Testing Tools**:
-    - **Postman**
-        - **Purpose**: API development environment.
-        - **Usage**: Design, test, and document APIs.
-
-14. **Code Quality and Documentation**
-- **Code Linters and Formatters**:
-    - **Pylint**
-        - **Purpose**: Code analysis for Python.
-        - **Usage**: Enforce coding standards, detect code smells.
-- **Documentation Generation**:
-    - **Sphinx**
-        - **Purpose**: Generate documentation from source code.
-        - **Usage**: Create project documentation automatically.
-
-15. **Additional Tools and Libraries**
-- **Data Serialization Formats**:
-    - **JSON**
-        - **Purpose**: Lightweight data interchange format.
-        - **Usage**: Transfer data between frontend and backend services.
-
 # Creation of the Satya
 
-## 1. Data collection/Data Preprocessing/EDA/Base Model building/Experimentation(Hyperparameter tunning & Evaluation) alongside Experiment Tracking
+## 1. Cookiecutter Template
+Using cookiecutter template to create structure. make sure cookiecutter is installed globally.
 
-All experiments were carried out in Google Colab due to local hardware restrictions. After experimentation, we achieved an ML model with **86% accuracy** on the test data.
+```bash   
+pip install cookiecutter (if not installed)
+cookiecutter -c v1 https://github.com/drivendata/cookiecutter-data-science
 
-Below are the steps to setup an **MLflow Tracking Server** before training the model (Hyperparameter tuning) to find the best model. For collaborative projects, logging to a centralized server is crucial. We install MLflow on an EC2 instance and store code/plots on S3.
+You've downloaded C:\Users\Vivek\.cookiecutters\cookiecutter-data-science before. Is it okay to delete and re-download it? [y/n] (y): y
+    project_name (project_name): satya
+    repo_name (satya): satya
+    author_name (Your name (or your organization/company/team)): Vivek Kumar
+    description (A short description of the project.): Sentiments Analysis ML project to build an end-to-end API.
+    Select open_source_license
+        1 - MIT
+        2 - BSD-3-Clause
+        3 - No license file
+        Choose from [1/2/3] (1): 3
+    s3_bucket ([OPTIONAL] your-bucket-for-syncing-data (do not include 's3://')): buckets/satya-mlflow-bucket
+    aws_profile (default): 
+    Select python_interpreter
+        1 - python3
+        2 - python
+    Choose from [1/2] (1): 1
+```
+
+## 2. Create virtual environment and install libraries
+Create/Activate virtual environment using Anaconda/Python and install libraries.
+
+### Open Anaconda Prompt and create environment
+```bash
+conda create -n bca
+conda activate bca
+```
+
+### Check for pip, dvc and git and python
+> NOTE: git must be on the global system while the rest including dvc must be env specific. if not install then install.
+```bash
+conda install pip
+pip install dvc
+python --version
+git --version
+pip install -r requirements.txt
+```
+
+## 3. create git repo
+
+make new repo using github website > name > description > create repository and copy the url like https://github.com/mrvivekkumar7171/satya.git for repo name satya
+
+```bash
+git init
+git remote add origin https://github.com/mrvivekkumar7171/satya.git
+git status # show all the files/folders we have
+git add .
+git commit -m "Initial Commit"
+git push origin master # pushing the local repo files to github
+```
+
+## 4. Data collection
+We have used social media data from Twitter and Reddit because it is close to Youtube for sentiment analysis. [Twitter and Reddit Sentiment Analysis Dataset](https://www.kaggle.com/datasets/cosmos98/twitter-and-reddit-sentimental-analysis-dataset) has two columns comments and sentiment. The sentiment column has three values -1, 0, 1 for negative, neutral and positive sentiments respectively. The problem comes under multi-class classification.
+
+## 5. Data Preprocessing
+The dataset has missing values labelled as neutral, duplicates and empty comments, so we removed these rows. Then we perform preprocessing steps like lower casing, removing urls, replaced new line characters with space etc. 
+
+## 6. EDA
+- Our dataset is imbalanced with 22% negative, 35% neutral and 43% positive.
+- The average number of words in each comment is 30 and median is just 13. The high difference between median and mean shows that there is outliers in our data. Also, minimum number of words is 1 and maximum number of words is 1300.
+- The word count is highly right skewed. Most of words are in the range of 1 to 200 while there are few comments with more than 200 to 1200 words.
+- Neutral comments are generally shorter than positive and negative comments. While positive and negative comments have same distribution.
+- Positive comments have highest outliers with long comments in comparision to negative comments.
+- There are very large number of comments where there is very small numbers of stop words and less comments with high numbers of stop words. Thus neutral comments have mostly less numbers of stop words.
+- Again, stop words count of positive is highest while neutral is lowest. Negative comments have slightly less stop words than positive comments.
+- Top 25 Most Common Stop Words
+![Top 25 Most Common Stop Words](/reports/output.png)
+- number of punctuattion is 0 for all means punctuation is already removed.
+- Removing non-english characters like emojis, Hindi and other language characters.
+- Bigrams (Divided data set into set of 2 words each)
+![Bigrams](/reports/Bigrams.png)
+- Trigrams (Divided data set into set of 3 words each)
+![Trigrams](/reports/Trigrams.png)
+- Remove stop words while retaining essential ones ('not', 'but', 'however', 'no', 'yet') because stopwords like 'the' are not useful in sentiment analysis.
+- Apply lemmatization to reduce words to their base form. For example, 'running' becomes 'run', 'better' becomes 'good', etc. This helps in reducing the dimensionality.
+- We can notice there is more words related to politics means our data is more inclined towards politics and that is problem and the data will not perform well on non-political youtube video. We also plotted WordCloud for each sentiment and result are same and that is most are political words.
+![WordCloud](/reports/WordCloud.png)
+![Top 50 Most Frequent Words](/reports/Most_Frequent_Words.png)
+- Plotting graph of words used in positve, neutral and negative context. We can notice that not and other words are used in positve context more than neutral and negative context as we have more positive comments
+![Top 20 Most Frequent Words and Sentiments associated with them](/reports/top_words.png)
+
+## 7. MLflow Experiment Tracking Server Setup
+
+For collaborative projects, logging to a centralized server is crucial. We install MLflow on an EC2 instance and store code/plots on S3.
 
 ### Steps to setup a **Mlflow Tracking Server**
 
@@ -240,72 +165,82 @@ screen -S mlflow
 mlflow server --backend-store-uri ./mlruns --default-artifact-root s3://satya-mlflow-bucket --host 0.0.0.0 --port 5000
 ```
 
-## 2. Building DVC Pipeline / Registering the model
+## 8. Base Model building and Experimentation and Evaluation
+All experiments were carried out in Google Colab due to local hardware restrictions.
 
-We will take the model from the Experimentation and build the project on it. Then we will use dvc pipeline to make the model dynamically and store it in model registry.
+### Baseline Model
+Using stratify parameter of train test split to ensure that the training and testing subsets maintain the exact same proportion of class labels as the original dataset. We perform preprocessing and applied CountVectorizer/Bag of Words (BoW) with max_features=10000, n_estimators = 200 and max_depth = 15 then training RandomForestClassifier. We got an accuracy of **65%** but due to **imbalanced dataset the result is not reliable**. We have recall (Recall measures how many of the actual `-1` samples your model successfully identified as `-1`) of 0.01 for negative sentiment which means our model is not working well for negative sentiment. So, we need to deal with class imbalance (using overweight/underweight/class_weight).
 
-### using cookiecutter template to create structure (make sure cookiecutter is installed globally)
+### Vectorizers (Bow vs TFIDF)
+Train RandomForestClassifier with unigrams, bigrams and trigrams. **tfidf with the tri-gram** is giving the best result i.e. recall and accuracy is high but precision is high but not compared to other combination. But, our targets was recall and accuracy so continuing with tfidf with the tri-gram.
 
-```bash   
-pip install cookiecutter (if not installed)
-cookiecutter -c v1 https://github.com/drivendata/cookiecutter-data-science
+### max_features from 1000 to 10000
+Training RandomForestClassifier with n_estimators=200, max_depth=15, TfidfVectorizer and Trigram. 10000 as max_features is giving the best result.
 
-You've downloaded C:\Users\Vivek\.cookiecutters\cookiecutter-data-science before. Is it okay to delete and re-download it? [y/n] (y): y
-    project_name (project_name): satya
-    repo_name (satya): satya
-    author_name (Your name (or your organization/company/team)): Vivek Kumar
-    description (A short description of the project.): Sentiments Analysis ML project to build an end-to-end API.
-    Select open_source_license
-        1 - MIT
-        2 - BSD-3-Clause
-        3 - No license file
-        Choose from [1/2/3] (1): 3
-    s3_bucket ([OPTIONAL] your-bucket-for-syncing-data (do not include 's3://')): buckets/satya-mlflow-bucket
-    aws_profile (default): 
-    Select python_interpreter
-        1 - python3
-        2 - python
-    Choose from [1/2] (1): 1
-```
+### Handling Imbalance
+Training RandomForestClassifier with n_estimators=200, max_depth=15 with different techniques to handle class imbalance like `ADASYN`, `Class Weight` balance, `Undersampling`, OverSampling like `SMOTE` and `SMOTE + ENN`. On concluding the result from mlflow, **smote** is perfroming the best.
 
-### Create/Activate virtual environment using Anaconda/Python and install libraries
+### Trying different ML models with Hyperparameter Tunning
+No Remapping is done since unless specified. Remove rows where the target labels are NaN. Hyperparameter tuning using Optuna direction=maximize for accuracy_score and n_trials=30. TfidfVectorizer with max_features=10000 and Trigram and SMOTE.
+Not trying:
+  - Gradient Boosting (Generally, XGB and LightGBM perform better than it)
+  - Adabost (Generally, XGB and LightGBM perform better than it)
+  - Decision Tree (Generally, RF perform better than it)
+  - Catboost (all features are not categorical)
 
-#### open Anaconda Prompt and create environment
+#### KNN
+We train KNeighborsClassifier with parameters like `n_neighbors` from `1 to 30` and `distance metric (1 for Manhattan, 2 for Euclidean)`. Accuracy optained is `0.59%`.
 
-```bash
-conda create -n bca
-conda activate bca
-```
+#### LightGBM
+Remap the class labels from [-1, 0, 1] to [2, 0, 1]. We train LGBMClassifier with parameters like `n_estimators` from `50 to 300`, `learning_rate` from `0.0001 to 0.1 on logarithmic scale` and `max_depth` from `3 to 10`. Accuracy optained is `0.84%`.
 
-#### check for pip, dvc and git and python (if not then install) (git must be on the global system while the rest including dvc must be env specific)
+#### Logistic Regression
+We train LogisticRegression with parameters like `C` from `0.0001 to 10 on log scale`, `solver='liblinear'` and `penalty` like `'l1' and 'l2'`. Accuracy optained is `0.78%`.
 
-```bash
-conda install pip
-pip install dvc
-python --version
-git --version
-pip install -r requirements.txt
-```
+#### Naive Bayes
+We train MultinomialNB with `alpha` from `0.0001 to 1 on log scale`. Accuracy optained is  `0.66%`.
 
-### create git repo after initializing it
+#### Random Forest
+We train RandomForestClassifier with `n_estimators` from `50 to 300`, `max_depth` from `3 to 20`, `min_samples_split` from `2 to 20`, and `min_samples_leaf` from `1 to 20`. Accuracy optained is `0.70%`.
 
-make new repo using github website > name > description > create repository and copy the url like https://github.com/mrvivekkumar7171/satya.git for repo name satya
+#### Support Vector Machine
+We train SVC with `C` from `0.0001 to 10 on log scale` and `kernel` like `'linear', 'rbf', 'poly'`. Accuracy optained is `0.83%`.
 
-```bash
-git init
-git remote add origin https://github.com/mrvivekkumar7171/satya.git
-git status # show all the files/folders we have
-git add .
-git commit -m "Initial Commit"
-git push origin master # pushing the local repo files to github
-```
+#### XGBoost
+Remap the class labels from [-1, 0, 1] to [2, 0, 1]. We train XGBClassifier with parameters like `n_estimators` from `50 to 300`, `learning_rate` from `0.0001 to 0.1 on logarithmic scale`, `max_depth` from `3 to 10`, `tree_method='hist'` and `device="cuda"` for GPU acceleration. Accuracy optained is `0.48%`.
 
-### Creating dvc pipeline with remote storage (S3) storage after Aws configuration on local machine
+#### BERT
+We achieved an accuracy of 96% on using Deep learning Model (BERT) on test dataset.
 
-#### Create S3 bucket : 
+#### Stacking Ensemble
+Here, Base Learners like `LGBMClassifier` and `LogisticRegression` will make prediction on each comment and then the predictions of both base learners will be passed to the `KNN`, Meta Learner to make the final prediction. We have achived an accuracy of `87%` on test dataset.
+
+#### Word2Vec
+Using Word2Vec for vectorization and then train LGBMClassifier. We got 66% accuracy on test dataset with hyperparameter tunning.
+
+#### Custom Features
+We have used `spacy` for pos tagging and created features like `Comment Length`, `Word Count`, `Average Word Length`, `Unique Word Count`,  `Lexical Diversity` (unique words in overall words in the comment), `Count of POS Tags` and `Proportion of POS Tags`. Total there are 23 new columns and combined these 23 columns with Vectorizer dataset and trained LGBMClassifier. We have achived 85% accuracy on test dataset.
+
+### Training the best model
+Since, LightGBM has given the best accuracy we are going ahead with it. Now, we will perfrom more detailed hyperparameter tunning on LightGBM with 100 trials and parameters like `n_estimators` from `100 to 1000`, `learning_rate` from `0.0001 to 0.1 on log scale`, `max_depth` from `3 to 15`, `num_leaves` from `20 to 150`, `min_child_samples` from `10 to 100`, `colsample_bytree` from `0.5 to 1.0`, `subsample` from `0.5 to 1.0`, `reg_alpha` from `0.0001 to 10 on log scale` (L1 regularization) and `reg_lambda` from `0.0001 to 10 on log scale` (L2 regularization) to find out which hyperparameters are important.
+
+Hyperparameter Importances given by Optuna shows us that most important HP of the algorithm is **learning_rate** then **n_estimators** then **max_depth** while the rest have negligible importance.
+
+Performing the Final Hyperparameter Training on LGBMClassifier with `3 cross validation` and `50 n_trials` with only important HP.
+
+The parameters `objective='multiclass'`, `num_class=3`, `learning_rate` from `0.001 to 0.1`, `n_estimators` from `50 to 500`, `max_depth` from `3 to 20`, `metric="multi_logloss"`, `is_unbalance=True`, `class_weight="balanced"`, `reg_lambda=0.1`, `reg_alpha=0.1`.
+
+After experimentation, we achieved an ML model with **`86% accuracy`** on the test data and and `93%` on train. Our best parameters are  `objective='multiclass'`, `num_class=3`, `learning_rate=0.08`, `n_estimators=367`, `max_depth=20`, `metric="multi_logloss"`, `is_unbalance=True`, `class_weight="balanced"`, `reg_lambda=0.1`, `reg_alpha=0.1`. We will build our project on this model.
+
+## 9. Building a DVC Pipeline
+
+We will take the best model from the Experimentation and build a DVC pipeline on it with remote storage S3. Then we will use dvc pipeline to train the model dynamically and store the training data in model registry.
+
+### Create S3 bucket
 
 - S3 > Create bucket > name it (satya-dvc-bucket) > click Create bucket (make sure Block all public access is on)
 
+### DVC setup
 ```bash
 dvc init
 aws configure # Enter IAM details that i had created at the time of mlflow S3 and EC2 setup.
@@ -330,9 +265,24 @@ dvc push # to push the your DVC-tracked data to remote server database
 git push origin master
 ```
 
-## 3. Building backend using flask & Testing backend/app.py using postman
+### Build the dvc pipeline
+Below are the 5 stages of the dvc pipeline of the best model from the above experimentation:
+1. **Data Ingestion**: Fetch data, perform cleaning, train-test split and store the dataset.
+2. **Data Preprocessing**: Perform pre-processing and store the processed dataset.
+3. **Model Building**: Apply TFIDF vectorizer and train and store the LightGBM model and vectorizer.
+4. **Model Evaluation**: Apply TFIDF vectorizer and test the model on test data and register the parameters, metrics, vectorizer, and model to MLflow Model Registry.
+5. **Model Registration**: Register the model for staging.
 
-- put url in new tab : http://localhost:80/
+![DVC Pipeline dag](reports/image.png)
+
+> NOTE: We can also create a seperate dvc stage for Feature Engineering and apply the TFIDF vectorizer and store the vectorizer and vectorized dataset. Also, we can perform hyperparameter tuning in model building stage, but I have choosen to do hyperparameter tuning  before than apply the best parameter in the model building stage.
+
+We will fetch the model from model registry and use it in the flask API backend to predict the sentiment of the comments.
+
+## 10. Building API and Testing
+Building backend using flask & Testing `backend/app.py` using postman.
+
+- put url in new tab : http://localhost:8000/
 - select post
 - select body then select raw then select json
 - fill the body with
@@ -361,7 +311,21 @@ git push origin master
     ]
 ```
 
-## 4. Creating CI/CD pipeline to make the backend Production ready
+## 11. Front end Development
+
+### Steps to obtain a YouTube Data API Key:
+
+- **Visit https**: //console.cloud.google.com/
+- **Create a Project**: Select a Project dropdown > New Project > name the project ("TheSoftMax.com") > Create
+- **Enable YouTube Data API v3**: In left sidebar > APIs & Services > Library > Search for YouTube Data API v3 > click on it > Enable
+- **Generate an API Key**: APIs & Services > Credentials > Create Credentials > API Key > Copy the key.
+
+### Building A frontend using Flask
+We had build a basic frontend app using Flask to visualize the sentiment of the youtube comments using beautiful visualization of D3.js. Feel free to take help from AI.
+
+![Front End](/reports/image-5.png)
+
+## 12. Setting up CI/CD pipeline to make the backend Production ready
 *Git commit triggers ci/cd pipeline on github action to automate test, dockerize and deployment model. Inside the ci/cd pipeline, run dvc pipeline that check for change in parameters, if yes then create a new model on MLflow Model Registory and register it at staging. This will update the dvc dependent files on github Actions so Github Action Bot push that using a commit to the github if earlier commit is done by user. Then, load the model and perform loading, signature (number of input and its type), performance testing (compare to current production model or to a benchmark/threshold) using pytest if pass then move the model from staging to production and current production model to archive. Then perform the flask API testing, dockerize the model into an Docker image and Deploy the Docker image.*
 
 *NOTE : No need to run dvc repro on local pc as it will be done automatically on the Github Actions. When you made a commit and did a git push from your PC. So, GitHub Actions will run dvc repro then dvc push then git add . and git commit and git push resulting in a new version of dvc.lock and metrics.json etc. on github website (but not available on your PC), means remote repo has files that are ahead of local repo. Before working and pushing changes to github, we need to pull dvc updataed files from the github cloud to local. Otherwise, this will give error as the commit made by the bot will not be available to the local git repo.*
@@ -374,32 +338,29 @@ git commit -m "My changes"
 git push origin master
 ```
 
-#### Delete existing requirements.txt of cookiecutter and generate one
-
+1. Delete existing `requirements.txt` of cookiecutter and generate one
 ```bash
 pip freeze > requirements.txt
 ```
 
-create .GitHub/workflows/cicd.yaml
+2. Create `.GitHub/workflows/cicd.yaml`
 
-#### steps to add AWS credentials to GitHub secrets
-
+3. steps to add AWS credentials to GitHub secrets
 - repo > Settings -> Security > Secrets and Variables > Actions > Secrets > New repository secret > fill name and value of the secrets.
 
-#### give permissions to `github-actions[bot]`
-
+4. give permissions to `github-actions[bot]`
 - repo > Settings -> Actions -> General -> Workflow permissions -> Read and Write permissions > save
 
-## 5. Dockerization, Testing and ECR configuration and pushing to ECR
+## 13. Dockerization API, Testing and pushing to ECR
 
-To generate separate backend/requirements.txt for the docker image to make it light weight by removing unncessary libraries.
+To generate separate `backend/requirements.txt` for the docker image to make it light weight by removing unncessary libraries.
 
 ```bash
 pip install pipreqs
 pipreqs . --force # run inside the backend folder to create backend/requirements.txt
 ```
 
-### Creation of **Docker Hub ECR** for docker image:
+### Creation of **Docker Hub ECR**:
 
 - Docker Hub > Account Settings > Personal Access Tokens > Generate new token > fill description > Access Permissions > Read, Write, Delete > Generate.
 
@@ -418,11 +379,12 @@ docker pull vivekkumar7171/satya-docker-image:latest
 docker run -p 80:5000 -e AWS_ACCESS_KEY_ID="${{ secrets.AWS_ACCESS_KEY_ID }}" -e AWS_SECRET_ACCESS_KEY="${{ secrets.AWS_SECRET_ACCESS_KEY }}" vivekkumar7171/satya-docker-image:latest
 ```
 
-### Creation of **AWS ECR** for docker image:
+### Creation of **AWS ECR**
 
 - AWS > ECR (Elastic Container Registry) > Private registry > Repositories > Create repository > name it (satya-ecr) > Create > view push commands.
 
-Create Dockerfile and login AWS ECR, build, tag, push, pull and run the Docker Image to and from AWS ECR
+### Create Dockerfile
+Login AWS ECR, build, tag, push, pull and run the Docker Image to and from AWS ECR
 
 ```bash
 aws configure # if not configured
@@ -440,17 +402,31 @@ docker pull 794431322868.dkr.ecr.ap-south-1.amazonaws.com/satya-ecr:latest
 docker run -p 80:5000 -e AWS_ACCESS_KEY_ID="secret" -e AWS_SECRET_ACCESS_KEY="secret" 794431322868.dkr.ecr.ap-south-1.amazonaws.com/satya-ecr:latest
 ```
 
-Test the Flask API using postman at http://127.0.0.1:80/predict (same as done in 4. above)
+### [Test the Flask API]:(https://documenter.getpostman.com/view/25678342/2sBYAysomS)
+
+Test the Flask API using postman at http://127.0.0.1:80/predict (same as done in 10. above)
+
+This collection provides a set of endpoints for a YouTube Comments Sentiment Analysis application built with Flask. It allows you to fetch comments from a YouTube video, run sentiment predictions, and visualize the results — all through a locally hosted service.
+
+Ensure the Flask application is running locally on http://localhost:8000 before sending any requests. Use the /health endpoint to confirm the service is up, then use /analyze_video with a YouTube video ID to fetch and analyze comments in one step.
+
+![http://localhost:8000/predict](/reports/image-4.png)
+
+![http://localhost:8000/](/reports/image-1.png)
+
+![http://localhost:8000/health](/reports/image-2.png)
+
+![http://localhost:8000/analyze_video](/reports/image-3.png)
 
 ```bash
 wsl --shutdown # To shut Docker Terminal/ Docker Engine if unable to shut down.
 ```
 
-## 6. Deployment using launch template, ASG and Codedeploy of AWS
+## 14. Deployment using launch template, ASG and Codedeploy of AWS
 
-#### **ASG (Auto Scaling Group)** in AWS is a feature that automatically manages a group of EC2 instances. It ensures you always have the right number of instances running. It can scale out (add instances) when load increases, and scale in (remove instances) when load decreases. Often paired with a Launch Template (to define how each new instance is built).
+**ASG (Auto Scaling Group)** in AWS is a feature that automatically manages a group of EC2 instances. It ensures you always have the right number of instances running. It can scale out (add instances) when load increases, and scale in (remove instances) when load decreases. Often paired with a Launch Template (to define how each new instance is built).
 
-#### **CodeDeploy** integrates with ASG to deploy apps (or Docker images) with different strategy onto EC2 instances. CodeDeploy installs an agent (codedeploy-agent) on each EC2 instance in the ASG. This agent listens for deployment instructions from CodeDeploy. With Docker, CodeDeploy can pull and run new images.
+**CodeDeploy** integrates with ASG to deploy apps (or Docker images) with different strategy onto EC2 instances. CodeDeploy installs an agent (codedeploy-agent) on each EC2 instance in the ASG. This agent listens for deployment instructions from CodeDeploy. With Docker, CodeDeploy can pull and run new images.
 
 CodeDeploy supports different strategies to roll out changes across your ASG:
 
@@ -460,7 +436,7 @@ CodeDeploy supports different strategies to roll out changes across your ASG:
 
 - **Rolling Update (subset at a time)** : Updates a batch of instances, then the next batch, until all are updated. Controlled rollout, avoids full outage. This is commonly used with ASG.
 
-#### **A Launch Template** is a reusable configuration for launching EC2 instances. Think of it like a blueprint for your servers. Instead of setting up each EC2 manually, you define everything once in a Launch Template, such as: AMI (Amazon Machine Image, i.e. OS + base software), Instance type (e.g., t2.micro, m5.large), Key pair (for SSH access), Security groups (firewall rules), IAM role (permissions for the instance), EBS volumes (disks), User data script (commands to run at boot, e.g. install Docker, pull code, etc.) and Networking details (VPC, subnet) etc.
+**A Launch Template** is a reusable configuration for launching EC2 instances. Think of it like a blueprint for your servers. Instead of setting up each EC2 manually, you define everything once in a Launch Template, such as: AMI (Amazon Machine Image, i.e. OS + base software), Instance type (e.g., t2.micro, m5.large), Key pair (for SSH access), Security groups (firewall rules), IAM role (permissions for the instance), EBS volumes (disks), User data script (commands to run at boot, e.g. install Docker, pull code, etc.) and Networking details (VPC, subnet) etc.
 
 ### Setup Steps
 #### Create a new IAM role to enable communication between EC2 - ECR and EC2 - Codedeploy :
@@ -535,6 +511,34 @@ Create `appspec.yml`, `deploy/scripts/install_dependencies.sh` and `start_docker
 
 
 NOTE: if the deployment fails at AllowTraffic means security group in Load Balances is not allowed for 80 TCP http 0.0.0.0/0 thus add in inbound.
+
+# Technologies
+
+- **Cookiecutter**
+- **Git**
+- **DVC (Data Version Control)**
+- **AWS S3 (Simple Storage Service)**
+- **NLP Libraries**:
+    - **NLTK (Natural Language Toolkit)**
+    - **spaCy**
+- **Mlflow**
+- **MLflow Model Registry**
+- **Optuna**
+- **GitHub Actions**
+- **AWS (Amazon Web Services)**
+- **Testing Frameworks**:
+    - **Pytest**
+    - **Unittest**
+- **Jira**
+- **Slack**
+- **Docker**
+- **Monitoring Tools**:
+    - **Prometheus**
+    - **Grafana**
+- **FastAPI**
+- **Postman**: API Testing Tool
+- **Pylint**: Code analysis for Python and enforce coding standards, detect code smells.
+- **Sphinx**: Generate documentation automatically from source code.
 
 # Further Improvements :
 

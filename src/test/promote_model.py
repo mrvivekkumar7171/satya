@@ -1,11 +1,14 @@
 # move the model from staging to production and archive the current production model.
 
 import os, mlflow
-satya_mlflow_ec2_uri = 'http://65.2.37.109:5000/'
+from dotenv import load_dotenv
+load_dotenv()
+
+satya_mlflow_ec2_uri = os.getenv("satya_mlflow_ec2_uri")
 staging_alias = "staging"
 prod_alias = "production" # for initial nu
 archived_alias = "archived"
-model_name = 'satya'
+model_name = os.getenv("FINAL_MODEL_NAME")
 
 def promote_model():
 

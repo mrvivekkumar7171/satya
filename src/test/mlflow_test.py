@@ -1,10 +1,11 @@
 # to test MLflow tracking server connection and logging functionality before running or making changes in the model_evaluation.py
 
 import mlflow, random, os
-satya_mlflow_ec2_uri = 'http://65.2.37.109:5000/'
+from dotenv import load_dotenv
+load_dotenv()
 
 # Set the MLflow tracking URI
-mlflow.set_tracking_uri(satya_mlflow_ec2_uri)
+mlflow.set_tracking_uri(os.getenv("satya_mlflow_ec2_uri"))
 
 # Start an MLflow run
 with mlflow.start_run():

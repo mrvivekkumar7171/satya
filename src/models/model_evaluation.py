@@ -12,9 +12,12 @@ import seaborn as sns
 import mlflow.sklearn
 import pandas as pd
 import numpy as np
+from dotenv import load_dotenv
+load_dotenv()
 
-model_name = 'lgbm_model'
-satya_mlflow_ec2_uri = 'http://65.2.37.109:5000/'
+model_name = os.getenv("ALGORITHM")
+PROJECT_NAME = os.getenv("PROJECT_NAME")
+satya_mlflow_ec2_uri = os.getenv("satya_mlflow_ec2_uri")
 
 # logging configuration
 logger = logging.getLogger('model_evaluation')
@@ -125,7 +128,7 @@ def save_model_info(run_id: str, model_path: str, file_path: str) -> None:
 def main():
     mlflow.set_tracking_uri(satya_mlflow_ec2_uri)
 
-    mlflow.set_experiment('Satya-Dvc-Pipelines')
+    mlflow.set_experiment(PROJECT_NAME)
     
     with mlflow.start_run() as run:
         try:
@@ -161,6 +164,11 @@ def main():
                 signature=signature,
                 input_example=input_example
             )
+
+            # log model parameters
+            if hasattr(model, 'get_params'):
+                for param_name, param_value in model.get_params().items():
+                    mlflow.log_param(param_name, param_value)
 
             # Save model info
             save_model_info(run.info.run_id, f"{model_name}_path", 'logs/experiment_info.json')
